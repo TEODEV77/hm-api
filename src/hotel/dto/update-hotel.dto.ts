@@ -1,12 +1,12 @@
 import { ApiProperty, PartialType } from '@nestjs/swagger';
-import { CreateUserDto } from './create-user.dto';
+import { CreateHotelDto } from './create-hotel.dto';
 import { IsIn, IsOptional, IsString } from 'class-validator';
 
-export class UpdateUserDto extends PartialType(CreateUserDto) {
+export class UpdateHotelDto extends PartialType(CreateHotelDto) {
   
   @ApiProperty()
   @IsOptional()
   @IsString()
-  @IsIn(['admin', 'travel agent', 'client'])
+  @IsIn(['active', 'inactive'])
   status?: string;
 }
