@@ -17,10 +17,10 @@ export class User extends Document {
 
   @Prop({
     type: String,
-    enum: ['admin', 'travel agent', 'client'],
-    default: 'client',
+    enum: ['ADMIN', 'TRAVEL_AGENT', 'CLIENT'],
+    default: 'CLIENT',
   })
-  role: 'admin' | 'travel agent' | 'client';
+  role: string;
 }
 
 export const UserSchema = SchemaFactory.createForClass(User);
