@@ -1,0 +1,1 @@
+export const CORS_ORIGIN = ['http://localhost:4200'];
