@@ -4,11 +4,17 @@ import { AuthController } from './auth.controller';
 import { ConfigModule, ConfigService } from '@nestjs/config';
 import { PassportModule } from '@nestjs/passport';
 import { JwtModule } from '@nestjs/jwt';
+import { MongooseModule } from '@nestjs/mongoose';
+import { User, UserSchema } from './entities/user.entity';
+import { JwtStrategy } from './strategies/jwt.strategy';
+import { BcryptModule } from 'src/third-party/bcrypt/bcrypt.module';
 
 @Module({
   imports: [
     ConfigModule,
+    BcryptModule,
     PassportModule.register({ defaultStrategy: 'jwt'}),
+    MongooseModule.forFeature([{ name: User.name, schema: UserSchema }]),
     JwtModule.registerAsync({
       imports: [ConfigModule],
       inject: [ConfigService],
@@ -22,6 +28,7 @@ import { JwtModule } from '@nestjs/jwt';
 
   ],
   controllers: [AuthController],
-  providers: [AuthService]
+  providers: [AuthService, JwtStrategy],
+  exports: [JwtStrategy,PassportModule,JwtModule]
 })
 export class AuthModule {}
