@@ -7,4 +7,8 @@ export class BcryptService {
     const saltRounds = 14;
     return bcrypt.hashSync(plainText, saltRounds);
   }
+
+  compareHash(plainText: string, hash: string) {
+    return bcrypt.compareSync(plainText, hash);
+  }
 }
