@@ -8,6 +8,7 @@ import { join } from 'path';
 import { ServeStaticModule } from '@nestjs/serve-static';
 import { MongooseModule } from '@nestjs/mongoose';
 import { JwTokenModule } from './third-party/jw-token/jw-token.module';
+import { HotelModule } from './hotel/hotel.module';
 
 @Module({
   imports: [
@@ -19,6 +20,7 @@ import { JwTokenModule } from './third-party/jw-token/jw-token.module';
       rootPath: join(__dirname, '..', 'public'),
     }),
     MongooseModule.forRoot(process.env.MONGODB_URI),
+    HotelModule,
     
   ],
   controllers: [],
