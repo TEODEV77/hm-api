@@ -21,6 +21,12 @@ $ yarn run start:dev
 $ yarn run start:prod
 ```
 
+## Docs API
+
+```bash
+http://localhost:3000/docs
+```
+
 ## Test
 
 ```bash

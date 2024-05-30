@@ -8,6 +8,7 @@ export class JwTokenService {
 
     generateAuthJwt(payload: JwtUserPayload) {
         payload.type = 'auth';
+        Object.freeze(payload);
         return this.jwtService.sign(payload);
     }
 
