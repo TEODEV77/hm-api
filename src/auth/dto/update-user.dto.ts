@@ -7,6 +7,7 @@ export class UpdateUserDto extends PartialType(CreateUserDto) {
   @ApiProperty()
   @IsOptional()
   @IsString()
-  @IsIn(['admin', 'travel agent', 'client'])
+  @IsIn(['ADMIN', 'TRAVEL_AGENT', 'CLIENT'])
   status?: string;
 }
+
