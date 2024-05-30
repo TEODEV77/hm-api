@@ -4,6 +4,7 @@ import { InjectModel } from '@nestjs/mongoose';
 import { User } from './entities/user.entity';
 import { Model } from 'mongoose';
 import { BcryptService } from '../third-party/bcrypt/bcrypt.service';
+import { duplicateKey } from 'src/utils/errors/duplicate-key';
 
 @Injectable()
 export class AuthService {
@@ -22,7 +23,9 @@ export class AuthService {
       const user = await this.userModel.create(createUserDto);
       return user;
     } catch (error) {
-      throw new BadRequestException()
+      if(error.code === 11000){
+        duplicateKey('email');
+      }
     }
   
   }
