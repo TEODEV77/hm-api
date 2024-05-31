@@ -25,7 +25,7 @@ export class RoomService {
       const hotel = await this.hotelService.findOneById(hotelId);
       if (!hotel) throw new NotFoundException('Hotel not found');
       createRoomDto.base_cost = this.calculateBaseCost(createRoomDto.type);
-      const room = this.roomModel.create(createRoomDto);
+      const room = await this.roomModel.create(createRoomDto);
       return room;
     } catch (error) {
       if (error.code === 11000) {
