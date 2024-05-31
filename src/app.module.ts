@@ -10,6 +10,7 @@ import { MongooseModule } from '@nestjs/mongoose';
 import { JwTokenModule } from './third-party/jw-token/jw-token.module';
 import { HotelModule } from './hotel/hotel.module';
 import { AccommodationModule } from './accommodation/accommodation.module';
+import { RoomModule } from './room/room.module';
 
 @Module({
   imports: [
@@ -23,6 +24,7 @@ import { AccommodationModule } from './accommodation/accommodation.module';
     MongooseModule.forRoot(process.env.MONGODB_URI),
     HotelModule,
     AccommodationModule,
+    RoomModule,
     
   ],
   controllers: [],

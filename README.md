@@ -1,6 +1,14 @@
-## Description
 
-[Nest](https://github.com/nestjs/nest) framework TypeScript starter repository.
+# NestJS Project Structure
+
+## Main Software Patterns
+
+- Model-View-Controller (MVC)
+- Dependency Injection (DI)
+- Modules
+- Middlewares
+- Services
+- Feature folders
 
 ## Installation
 
