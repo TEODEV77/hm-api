@@ -10,7 +10,7 @@ export class Hotel extends Document {
   @Prop({ type: String, required: true, unique: true, index: true })
   name: string;
 
-  @Prop({ type: String, required: true, unique: true, index: true })
+  @Prop({ type: String, required: true, index: true })
   email: string;
 
   @Prop({ type: String, required: true, index: true })
