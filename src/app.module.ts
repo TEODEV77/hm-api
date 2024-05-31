@@ -9,6 +9,7 @@ import { ServeStaticModule } from '@nestjs/serve-static';
 import { MongooseModule } from '@nestjs/mongoose';
 import { JwTokenModule } from './third-party/jw-token/jw-token.module';
 import { HotelModule } from './hotel/hotel.module';
+import { AccommodationModule } from './accommodation/accommodation.module';
 
 @Module({
   imports: [
@@ -21,6 +22,7 @@ import { HotelModule } from './hotel/hotel.module';
     }),
     MongooseModule.forRoot(process.env.MONGODB_URI),
     HotelModule,
+    AccommodationModule,
     
   ],
   controllers: [],
