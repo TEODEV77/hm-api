@@ -12,43 +12,68 @@ import {
 
 export class CreateHotelDto {
   
-  @ApiProperty()
+
   @IsOptional()
   @IsString()
   owner: string;
 
-  @ApiProperty()
+  @ApiProperty({
+    example: 'Grand Oasis Resort',
+    description: `The hotel's name.`,
+  })
   @IsString()
   @IsNotEmpty()
   name: string;
 
-  @ApiProperty()
+  @ApiProperty({
+    example: 'grand.oasis@hm.com',
+    description: `The hotel's email address`,
+  })
   @IsEmail()
   @IsNotEmpty()
   email: string;
 
-  @ApiProperty()
+  @ApiProperty({
+    example: 'Cancun',
+    description: 'The city where the hotel is located.',
+  })
   @IsString()
   @IsNotEmpty()
   city: string;
-
-  @ApiProperty()
+  
+  @ApiProperty({
+    example: 5,
+    minimum: 0,
+    maximum: 7,
+    description: `The hotel's star rating (0 to 7).`,
+  })
   @IsInt()
   @Min(0)
   @Max(7)
   stars: number;
-
-  @ApiProperty()
+  
+  @ApiProperty({
+    example: '123 Main Street, Cancun, Mexico',
+    description: `The hotel's street address.`,
+  })
   @IsString()
   @IsNotEmpty()
   address: string;
-
-  @ApiProperty()
+  
+  @ApiProperty({
+    example: 'A luxurious hotel with stunning views.',
+    description: 'A brief description of the hotel and its amenities.',
+  })
   @IsString()
   @IsNotEmpty()
   description: string;
-
-  @ApiProperty()
+  
+  @ApiProperty({
+    example: 15,
+    minimum: 0,
+    maximum: 35,
+    description: 'The commission percentage the hotel',
+  })
   @IsNumber()
   @Min(0)
   @Max(35)
