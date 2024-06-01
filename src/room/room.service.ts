@@ -20,10 +20,10 @@ export class RoomService {
   ) {}
 
   async create(hotelId: string, createRoomDto: CreateRoomDto) {
+    const hotel = await this.hotelService.findOneById(hotelId);
+    if (!hotel) throw new NotFoundException('Hotel not found');
     try {
       createRoomDto.hotel = hotelId;
-      const hotel = await this.hotelService.findOneById(hotelId);
-      if (!hotel) throw new NotFoundException('Hotel not found');
       createRoomDto.base_cost = this.calculateBaseCost(createRoomDto.type);
       const room = await this.roomModel.create(createRoomDto);
       return room;
@@ -33,7 +33,7 @@ export class RoomService {
         return;
       }
       if (!(error instanceof BadRequestException)) {
-        throw new InternalServerErrorException('An unexpected error occurred');
+        throw new InternalServerErrorException(error);
       } else {
         throw new BadRequestException(`Room could n't be created `);
       }
@@ -42,7 +42,7 @@ export class RoomService {
 
   async findOneById(id: string) {
     try {
-      const room = await this.roomModel.findOne({_id: id});
+      const room = await this.roomModel.findOne({ _id: id });
       if (!room) throw new NotFoundException('Room not found');
       return room;
     } catch (error) {
@@ -53,6 +53,8 @@ export class RoomService {
       }
     }
   }
+
+  
 
   async update(id: string, updateRoomDto: UpdateRoomDto) {
     const room = await this.findOneById(id);

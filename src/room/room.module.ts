@@ -15,5 +15,6 @@ import { HotelModule } from 'src/hotel/hotel.module';
   ],
   controllers: [RoomController],
   providers: [RoomService],
+  exports: [RoomService],
 })
 export class RoomModule {}

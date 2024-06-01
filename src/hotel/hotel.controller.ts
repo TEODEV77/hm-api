@@ -4,13 +4,18 @@ import { CreateHotelDto } from './dto/create-hotel.dto';
 import { Authorize } from 'src/auth/decorators/authorize.decorator';
 import { UserRole } from 'src/auth/utils/user.roles.enum';
 import { UpdateHotelDto } from './dto/update-hotel.dto';
+import { ApiTags } from '@nestjs/swagger';
+import { CreateHotelSwagger } from './decorators/post.hotel.decorator';
+import { UpdateHotelSwagger } from './decorators/patch.hotel.decorator';
 
-@Controller('hotel')
+@ApiTags('hotels')
+@Controller('hotels')
 export class HotelController {
   constructor(
     private readonly hotelService: HotelService,
   ) {}
 
+  @CreateHotelSwagger()
   @Authorize(UserRole.Admin, UserRole.TravelAgent)
   @Post()
   create(@Req() req, @Body() createHotelDto: CreateHotelDto) {
@@ -18,6 +23,7 @@ export class HotelController {
     return this.hotelService.create(owner,createHotelDto);
   }
 
+  @UpdateHotelSwagger()
   @Authorize(UserRole.Admin, UserRole.TravelAgent)
   @Patch(':id')
   update(@Req() req, @Param('id') id : string, @Body() updateHotelDto: UpdateHotelDto){

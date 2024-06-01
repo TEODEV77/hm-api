@@ -1,12 +1,17 @@
 import { ApiProperty, PartialType } from '@nestjs/swagger';
 import { CreateHotelDto } from './create-hotel.dto';
-import { IsIn, IsOptional, IsString } from 'class-validator';
+import { IsEnum, IsOptional } from 'class-validator';
+import { HotelStatus } from '../enums/hotel-status.enum';
 
 export class UpdateHotelDto extends PartialType(CreateHotelDto) {
   
-  @ApiProperty()
+  @ApiProperty({
+    description: 'Current availability status of the hotel',
+    enum: HotelStatus,
+    example: 'available',
+    default: 'available',
+  })
   @IsOptional()
-  @IsString()
-  @IsIn(['active', 'inactive'])
+  @IsEnum(HotelStatus)
   status?: string;
 }

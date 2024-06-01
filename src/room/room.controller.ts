@@ -11,7 +11,6 @@ import { UserRole } from 'src/auth/utils/user.roles.enum';
 export class RoomController {
   constructor(private readonly roomService: RoomService) {}
 
-  @Post(':hotelId')
   @ApiParam({
     name: 'hotelId',
     description: 'ID of the hotel this room belongs to',
@@ -20,6 +19,7 @@ export class RoomController {
     example: '6498a8f0e071b0c53c98a401',
   })
   @Authorize(UserRole.Admin, UserRole.TravelAgent)
+  @Post(':hotelId')
   create(
     @Param('hotelId') hotelId: string,
     @Body() createRoomDto: CreateRoomDto,
