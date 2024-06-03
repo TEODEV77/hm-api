@@ -1,4 +1,4 @@
-import { Controller, Post, Body, Req, Patch, Param } from '@nestjs/common';
+import { Controller, Post, Body, Req, Patch, Param, Get } from '@nestjs/common';
 import { HotelService } from './hotel.service';
 import { CreateHotelDto } from './dto/create-hotel.dto';
 import { Authorize } from 'src/auth/decorators/authorize.decorator';
@@ -21,6 +21,13 @@ export class HotelController {
   create(@Req() req, @Body() createHotelDto: CreateHotelDto) {
     const owner = req.user.id;
     return this.hotelService.create(owner,createHotelDto);
+  }
+
+  @Authorize(UserRole.Admin, UserRole.TravelAgent)
+  @Get()
+  findHotelsByOwner(@Req() req){
+    const owner = req.user.id;
+    return this.hotelService.findHotelsByOwner(owner);
   }
 
   @UpdateHotelSwagger()

@@ -35,6 +35,20 @@ export class HotelService {
     }
   }
 
+  async findHotelsByOwner(owner: string) {
+    try {
+      const hotels = await this.hotelModel.find({ owner });
+      if (!hotels) return [];
+      return hotels;
+    } catch (error) {
+      if (!(error instanceof NotFoundException)) {
+        throw new InternalServerErrorException('An unexpected error occurred');
+      } else {
+        throw new NotFoundException('Hotels not found');
+      }
+    }
+  }
+
   async findOneById(id: string) {
     try {
       const hotel = await this.hotelModel.findOne({ _id: id });
