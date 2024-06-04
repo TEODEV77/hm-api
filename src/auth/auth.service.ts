@@ -67,4 +67,9 @@ export class AuthService {
       }
     }
   }
+
+  checkToken(token: string){
+    return this.jwtService.verifyAuthJwt(token);
+  }
+
 }

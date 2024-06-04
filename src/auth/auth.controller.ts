@@ -1,4 +1,4 @@
-import { Controller, Post, Body } from '@nestjs/common';
+import { Controller, Post, Body, Get, Req } from '@nestjs/common';
 import { AuthService } from './auth.service';
 import { CreateUserDto } from './dto/create-user.dto';
 import { LoginUserDto } from './dto/login-user.dto';
@@ -22,6 +22,12 @@ export class AuthController {
   @LoginSwagger()
   login(@Body() loginUserDto: LoginUserDto) {
     return this.authService.login(loginUserDto);
+  }
+
+  @Get('check-token')
+  checkToken(@Req() req) {
+    const token = req.headers.authorization?.split(' ')[1];
+    return this.authService.checkToken(token);
   }
 
 }
