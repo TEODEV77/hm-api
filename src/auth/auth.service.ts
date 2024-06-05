@@ -58,7 +58,7 @@ export class AuthService {
     try {
       const user = await this.userModel.findOne({ email });
       if (!user) {
-        throw new NotFoundException(`User with email ${email} not found`);
+        throw new NotFoundException(`User with email: ${email} not found`);
       }
       return user;
     } catch (error) {
@@ -68,8 +68,24 @@ export class AuthService {
     }
   }
 
-  checkToken(token: string){
-    return this.jwtService.verifyAuthJwt(token);
+  async findOneById(id: string) {
+    try {
+      const user = await this.userModel.findOne({ _id : id });
+      if (!user) {
+        throw new NotFoundException(`User with id: ${id} not found`);
+      }
+      return user;
+    } catch (error) {
+      if (!(error instanceof NotFoundException)) {
+        throw new InternalServerErrorException('An unexpected error occurred');
+      }
+    }
+  }
+
+  async checkToken(token: string){
+    const decoded = this.jwtService.verifyAuthJwt(token);
+    const user = await this.findOneById(decoded.id);
+    return {user, token};
   }
 
 }

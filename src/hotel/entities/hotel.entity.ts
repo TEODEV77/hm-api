@@ -36,9 +36,9 @@ export class Hotel extends Document {
 
   @ApiProperty({
     example: 5,
-    minimum: 0,
+    minimum: 1,
     maximum: 7,
-    description: `The hotel's star rating (0 to 7).`,
+    description: `The hotel's star rating (1 to 7).`,
   })
   @Prop({ type: Number, required: true, min:1, max: 7, index: true })
   stars: number;
@@ -74,11 +74,11 @@ export class Hotel extends Document {
 
   @ApiProperty({
     example: 15,
-    minimum: 0,
+    minimum: 5,
     maximum: 35,
     description: 'The commission percentage the hotel',
   })
-  @Prop({ type: Number, required: true, min: 0, max: 35 })
+  @Prop({ type: Number, required: true, min: 5, max: 35 })
   commission: number;
 }
 

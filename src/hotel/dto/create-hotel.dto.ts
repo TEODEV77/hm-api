@@ -8,6 +8,7 @@ import {
   IsString,
   Max,
   Min,
+
 } from 'class-validator';
 
 export class CreateHotelDto {
@@ -43,12 +44,13 @@ export class CreateHotelDto {
   
   @ApiProperty({
     example: 5,
-    minimum: 0,
+    minimum: 1,
     maximum: 7,
-    description: `The hotel's star rating (0 to 7).`,
+    description: `The hotel's star rating (1 to 7).`,
   })
+
   @IsInt()
-  @Min(0)
+  @Min(1)
   @Max(7)
   stars: number;
   
@@ -70,12 +72,13 @@ export class CreateHotelDto {
   
   @ApiProperty({
     example: 15,
-    minimum: 0,
+    minimum: 5,
     maximum: 35,
     description: 'The commission percentage the hotel',
   })
+
   @IsNumber()
-  @Min(0)
+  @Min(5)
   @Max(35)
   commission: number;
 }

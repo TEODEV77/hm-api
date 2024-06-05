@@ -1,4 +1,4 @@
-import { Controller, Body, Param, Post ,Patch} from '@nestjs/common';
+import { Controller, Body, Param, Post ,Patch, Get} from '@nestjs/common';
 import { RoomService } from './room.service';
 import { CreateRoomDto } from './dto/create-room.dto';
 import { ApiParam, ApiTags } from '@nestjs/swagger';
@@ -16,7 +16,7 @@ export class RoomController {
     description: 'ID of the hotel this room belongs to',
     type: String,
     required: true,
-    example: '6498a8f0e071b0c53c98a401',
+    example: '665a94ed3c995e1b530f1a85',
   })
   @Authorize(UserRole.Admin, UserRole.TravelAgent)
   @Post(':hotelId')
@@ -33,7 +33,7 @@ export class RoomController {
     description: 'Room ID',
     type: String,
     required: true,
-    example: '6498a8f0e071b0c53c98a401',
+    example: '665a94ed3c995e1b530f1a85',
   })
   @Authorize(UserRole.Admin, UserRole.TravelAgent)
   update(
@@ -41,6 +41,19 @@ export class RoomController {
     @Body() updateRoomDto: UpdateRoomDto,
   ){
     return this.roomService.update(roomId, updateRoomDto);
+  }
+
+  @ApiParam({
+    name: 'hotelId',
+    description: 'ID of the hotel',
+    type: String,
+    required: true,
+    example: '665a94ed3c995e1b530f1a85',
+  })
+  @Authorize(UserRole.Admin, UserRole.TravelAgent)
+  @Get(':hotelId')
+  findByHotel(@Param('hotelId') hotelId: string){
+    return this.roomService.findByHotel(hotelId);
   }
 
   

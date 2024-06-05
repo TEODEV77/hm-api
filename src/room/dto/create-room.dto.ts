@@ -1,5 +1,5 @@
 import { ApiProperty } from '@nestjs/swagger';
-import { IsNumber, IsString, IsEnum, IsOptional } from 'class-validator';
+import { IsNumber, IsString, IsEnum, IsOptional, IsInt } from 'class-validator';
 import { RoomStatus, RoomType } from '../enums';
 
 export class CreateRoomDto {
@@ -9,6 +9,7 @@ export class CreateRoomDto {
     required: true,
     example: 100,
   })
+  @IsInt()
   @IsNumber()
   name: number;
 
@@ -18,6 +19,7 @@ export class CreateRoomDto {
     required: true,
     example: 2,
   })
+  @IsInt()
   @IsNumber()
   floor: number;
 

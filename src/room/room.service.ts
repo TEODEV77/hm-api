@@ -54,7 +54,19 @@ export class RoomService {
     }
   }
 
-  
+  async findByHotel(hotel: string){
+    try {
+      const rooms = await this.roomModel.find({ hotel });
+      if (!rooms) return [];
+      return rooms;
+    } catch (error) {
+      if (!(error instanceof NotFoundException)) {
+        throw new InternalServerErrorException('An unexpected error occurred');
+      } else {
+        throw new NotFoundException('Rooms not found');
+      }
+    }
+  }
 
   async update(id: string, updateRoomDto: UpdateRoomDto) {
     const room = await this.findOneById(id);
