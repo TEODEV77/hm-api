@@ -7,7 +7,7 @@ import { CreateAccommodationDto } from './dto/create-accommodation.dto';
 
 @ApiBearerAuth()
 @ApiTags('Accommodations')
-@Controller('accommodation')
+@Controller('accommodations')
 export class AccommodationController {
   constructor(private readonly accommodationService: AccommodationService) {}
 

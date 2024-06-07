@@ -1,7 +1,7 @@
 import { ApiProperty, PartialType } from '@nestjs/swagger';
 import { CreateRoomDto } from './create-room.dto';
 import { RoomStatus } from '../enums';
-import { IsEnum } from 'class-validator';
+import { IsEnum, IsOptional } from 'class-validator';
 
 export class UpdateRoomDto extends PartialType(CreateRoomDto) {
   @ApiProperty({
@@ -10,6 +10,7 @@ export class UpdateRoomDto extends PartialType(CreateRoomDto) {
     example: 'available',
     default: 'available',
   })
+  @IsOptional()
   @IsEnum(RoomStatus)
   status?: string;
 
@@ -18,6 +19,7 @@ export class UpdateRoomDto extends PartialType(CreateRoomDto) {
     type: Number,
     default: 19,
   })
+  @IsOptional()
   taxes?: number;
 
 }
