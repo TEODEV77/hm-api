@@ -39,7 +39,7 @@ export class AccommodationController {
     );
   }
 
-  @Get()
+  @Post()
   getByStartDateAndEndDate(@Body() createAccommodationDto: CreateAccommodationDto){
     return this.accommodationService.getByStartDateAndEndDate(createAccommodationDto);
   }
