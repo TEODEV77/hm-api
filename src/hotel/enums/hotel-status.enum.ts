@@ -1,5 +1,4 @@
 export enum HotelStatus {
-    AVAILABLE = 'available',
-    UNAVAILABLE = 'unavailable',
-  }
-  
+  AVAILABLE = 'available',
+  UNAVAILABLE = 'unavailable',
+}

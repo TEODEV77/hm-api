@@ -13,14 +13,14 @@ export class AccommodationController {
 
   @ApiParam({
     name: 'hotelId',
-    description: 'ID of the hotel this room belongs to',
+    description: 'ID of the hotel',
     type: String,
     required: true,
     example: '6498a8f0e071b0c53c98a401',
   })
   @ApiParam({
     name: 'roomId',
-    description: 'Room ID',
+    description: 'ID of the room',
     type: String,
     required: true,
     example: '6498a8f0e071b0c53c98a401',

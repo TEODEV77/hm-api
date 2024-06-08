@@ -11,6 +11,7 @@ import { JwTokenModule } from './third-party/jw-token/jw-token.module';
 import { HotelModule } from './hotel/hotel.module';
 import { AccommodationModule } from './accommodation/accommodation.module';
 import { RoomModule } from './room/room.module';
+import { ReservationModule } from './reservation/reservation.module';
 
 @Module({
   imports: [
@@ -25,6 +26,7 @@ import { RoomModule } from './room/room.module';
     HotelModule,
     AccommodationModule,
     RoomModule,
+    ReservationModule,
     
   ],
   controllers: [],
