@@ -15,6 +15,7 @@ import { Reservation, ReservationSchema } from './entities/reservation.entity';
     MongooseModule.forFeature([{ name: Reservation.name, schema: ReservationSchema }]),
   ],
   controllers: [ReservationController],
-  providers: [ReservationService]
+  providers: [ReservationService],
+  exports: [ReservationService]
 })
 export class ReservationModule {}

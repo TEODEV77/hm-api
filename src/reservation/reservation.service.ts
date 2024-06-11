@@ -53,7 +53,8 @@ export class ReservationService {
 
   async findOneById(idReservation: string) {
     try {
-      const reservation = await this.reservationModel.findOne({ _id: idReservation });
+      const reservation = await 
+      this.reservationModel.findOne({ _id: idReservation }).populate('hotel').populate('room');
       return reservation;
     } catch (error) {
       if (!(error instanceof NotFoundException)) {
@@ -99,6 +100,7 @@ export class ReservationService {
     }
   }
 
+ 
   calculateNights(start_date: string, end_date: string): number {
     const time = Math.abs(new Date(end_date).getTime() - new Date(start_date).getTime());
     const nights = Math.ceil(time / (1000 * 60 * 60 * 24));

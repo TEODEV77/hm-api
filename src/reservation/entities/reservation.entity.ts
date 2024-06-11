@@ -1,7 +1,9 @@
 import { Prop, Schema, SchemaFactory } from '@nestjs/mongoose';
 import { ApiProperty } from '@nestjs/swagger';
-import { Document } from 'mongoose';
+import { Document, Schema as MongooseSchema } from 'mongoose';
 import { ReservationStatus } from './enums/reservation.enum';
+import { Hotel } from 'src/hotel/entities/hotel.entity';
+import { Room } from 'src/room/entities/room.entity';
 
 
 @Schema({ _id: false })
@@ -183,7 +185,8 @@ export class Reservation extends Document {
     required: true,
     example: '66633b22a647ee3e9e9b2169',
   })
-  hotel: string;
+  @Prop({ type: MongooseSchema.Types.ObjectId, ref: 'Hotel', required: true })
+  hotel: Hotel;
 
   @ApiProperty({
     description: 'The ID of the room associated with the reservation',
@@ -191,7 +194,8 @@ export class Reservation extends Document {
     required: true,
     example: '665a96e76c15d151742f0bec',
   })
-  room: string;
+  @Prop({ type: MongooseSchema.Types.ObjectId, ref: 'Room', required: true })
+  room: Room;
 
   @ApiProperty({
     description: 'An array of guests included in the reservation',
