@@ -1,7 +1,8 @@
 import { ApiProperty } from '@nestjs/swagger';
 import { Prop, Schema, SchemaFactory } from '@nestjs/mongoose';
-import { Document } from 'mongoose';
+import { Document, Schema as MongooseSchema } from 'mongoose';
 import { RoomType, RoomStatus } from '../enums';
+import { Hotel } from 'src/hotel/entities/hotel.entity';
 
 @Schema()
 export class Room extends Document {
@@ -11,7 +12,7 @@ export class Room extends Document {
     required: true,
     example: 100,
   })
-  @Prop({ type: Number, required: true, unique: true, index: true })
+  @Prop({ type: Number , required: true, index: true })
   name: number;
 
   @ApiProperty({
@@ -70,8 +71,9 @@ export class Room extends Document {
   @Prop({ required: true, type: Number, default: 19 })
   taxes: number;
 
-  @Prop({ type: String, ref: 'Hotel', required: true })
-  hotel: string;
+  @Prop({ type: MongooseSchema.Types.ObjectId, ref: 'Hotel', required: true })
+  hotel: Hotel;
 }
 
 export const RoomSchema = SchemaFactory.createForClass(Room);
+RoomSchema.index({ hotel: 1, name: 1 }, { unique: true });
