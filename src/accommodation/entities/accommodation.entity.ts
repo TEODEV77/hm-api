@@ -1,6 +1,8 @@
 import { Prop, Schema, SchemaFactory } from '@nestjs/mongoose';
 import { ApiProperty } from '@nestjs/swagger';
-import { Document } from 'mongoose';
+import { Document, Schema as MongooseSchema } from 'mongoose';
+import { Hotel } from 'src/hotel/entities/hotel.entity';
+import { Room } from 'src/room/entities/room.entity';
 
 @Schema()
 export class Accommodation extends Document {
@@ -28,8 +30,8 @@ export class Accommodation extends Document {
     required: true,
     example: '6498a8f0e071b0c53c98a401', 
   })
-  @Prop({ type: String, ref: 'Hotel', required: true })
-  hotel: string;
+  @Prop({ type: MongooseSchema.Types.ObjectId, ref: 'Hotel', required: true })
+  hotel: Hotel;
 
   @ApiProperty({
     description: 'ID of the room associated with the booking',
@@ -37,8 +39,8 @@ export class Accommodation extends Document {
     required: true,
     example: '6498a8f0e071b0c53c98a401', 
   })
-  @Prop({ type: String, ref: 'Room', required: true })
-  room: string;
+  @Prop({ type: MongooseSchema.Types.ObjectId, ref: 'Room', required: true })
+  room: Room;
 }
 
 export const AccommodationSchema = SchemaFactory.createForClass(Accommodation);
