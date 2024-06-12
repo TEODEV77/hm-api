@@ -22,6 +22,8 @@ export class RoomService {
   async create(hotelId: string, createRoomDto: CreateRoomDto) {
     const hotel = await this.hotelService.findOneById(hotelId);
     if (!hotel) throw new NotFoundException('Hotel not found');
+    const existingRoom = await this.roomModel.findOne({ hotel: hotelId, name: createRoomDto.name });
+    if (existingRoom) throw new BadRequestException('Room already exists in this hotel');
     try {
       createRoomDto.hotel = hotelId;
       createRoomDto.base_cost = this.calculateBaseCost(createRoomDto.type);
