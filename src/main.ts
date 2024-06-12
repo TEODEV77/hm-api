@@ -23,7 +23,7 @@ async function bootstrap() {
   const document = SwaggerModule.createDocument(app, config);
   SwaggerModule.setup('docs', app, document);
 
-  const allowedOrigins = ['https://hm-front.web.app', 'http://localhost:4200'];
+  const allowedOrigins = ['https://hm-front.web.app', 'http://20.62.180.91','http://localhost:4200'];
 
   app.enableCors({
     origin: (origin, callback) => {
