@@ -38,10 +38,24 @@ export class ReservationController {
     );
   }
 
-  @Authorize(UserRole.Admin, UserRole.TravelAgent)
+  @Authorize(UserRole.Admin)
   @Get()
   findAll() {
     return this.reservationService.findAll();
+  }
+
+
+  @ApiParam({
+    name: 'hotelId',
+    description: 'ID of the hotel',
+    type: String,
+    required: true,
+    example: '6498a8f0e071b0c53c98a401',
+  })
+  @Authorize(UserRole.Admin, UserRole.TravelAgent)
+  @Get(':hotelId')
+  findByHotel(@Param('hotelId') hotelId: string){
+    return this.reservationService.findByHotel(hotelId);
   }
 
 

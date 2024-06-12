@@ -89,7 +89,7 @@ export class ReservationService {
 
   async findAll(){
     try {
-      const reservations = await this.reservationModel.find();
+      const reservations = await this.reservationModel.find().populate('hotel').populate('room');
       return reservations;
     } catch (error) {
       if (!(error instanceof NotFoundException)) {
@@ -120,5 +120,18 @@ export class ReservationService {
     await this.roomService.update(idRoom, room);
   }
 
+  async findByHotel(idHotel: string){
+    try {
+      const reservations = await 
+      this.reservationModel.find({ hotel: idHotel }).populate('hotel').populate('room');
+      return reservations;
+    } catch (error) {
+      if (!(error instanceof NotFoundException)) {
+        throw new InternalServerErrorException('An unexpected error occurred');
+      } else {
+        throw new NotFoundException('Reservations not found');
+      }
+    }
+  }
   
 }

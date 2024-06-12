@@ -1,11 +1,12 @@
 import { Controller, Body, Param, Post ,Patch, Get} from '@nestjs/common';
 import { RoomService } from './room.service';
 import { CreateRoomDto } from './dto/create-room.dto';
-import { ApiParam, ApiTags } from '@nestjs/swagger';
+import { ApiBearerAuth, ApiParam, ApiTags } from '@nestjs/swagger';
 import { UpdateRoomDto } from './dto/update-room.dto';
 import { Authorize } from 'src/auth/decorators/authorize.decorator';
 import { UserRole } from 'src/auth/utils/user.roles.enum';
 
+@ApiBearerAuth()
 @Controller('rooms')
 @ApiTags('rooms')
 export class RoomController {
