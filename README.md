@@ -1,6 +1,4 @@
 
-# NestJS Project Structure
-
 ## Main Software Patterns
 
 - Model-View-Controller (MVC)
