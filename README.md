@@ -1,6 +1,12 @@
-## Description
 
-[Nest](https://github.com/nestjs/nest) framework TypeScript starter repository.
+## Main Software Patterns
+
+- Model-View-Controller (MVC)
+- Dependency Injection (DI)
+- Modules
+- Middlewares
+- Services
+- Feature folders
 
 ## Installation
 
@@ -21,17 +27,10 @@ $ yarn run start:dev
 $ yarn run start:prod
 ```
 
-## Test
+## Docs API
 
 ```bash
-# unit tests
-$ yarn run test
-
-# e2e tests
-$ yarn run test:e2e
-
-# test coverage
-$ yarn run test:cov
+http://localhost:3000/docs
 ```
 
 ## Support
