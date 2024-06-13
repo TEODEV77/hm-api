@@ -72,6 +72,8 @@ export class RoomService {
 
   async update(id: string, updateRoomDto: UpdateRoomDto) {
     const room = await this.findOneById(id);
+    const existingRoom = await this.roomModel.findOne({ hotel: room.hotel, name: updateRoomDto.name });
+    if (existingRoom) throw new BadRequestException('Room already exists in this hotel');
     await this.roomModel.findByIdAndUpdate(id, updateRoomDto);
     return { ...room.toJSON(), ...updateRoomDto };
   }
